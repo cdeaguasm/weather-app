@@ -1,9 +1,8 @@
-<div class="container">
-    <div class="cards pt-4 text-light">
+<div class="container" *ngIf="weather">
+    <div class="cards pt-5 text-light">
         <h1>{{ weather.city }}, {{ weather.country }}</h1>
         <h5 class="py-4">
-            <i class="wi wi-day-sunny display-1"></i>
-            <img [src]="weather.icon" alt="" width="15%">
+            <img [src]="weather.icon" alt="">
         </h5>
         <h1 class="py-2">{{ weather.temp }}&deg;</h1>
 

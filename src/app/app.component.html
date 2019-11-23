@@ -1,3 +1,4 @@
-<app-weather-form></app-weather-form>
-
-<app-weather></app-weather>
+<div class="text-center">
+    <app-weather-form (sent)="onSent($event)"></app-weather-form>
+    <app-weather [city]="city" [country]="country"></app-weather>
+</div>

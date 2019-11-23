@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { WeatherService } from 'src/app/services/weather.service';
 import { Weather } from 'src/app/models/weather';
 
@@ -7,19 +7,27 @@ import { Weather } from 'src/app/models/weather';
   templateUrl: './weather.component.html',
   styleUrls: ['./weather.component.css']
 })
-export class WeatherComponent implements OnInit {
+export class WeatherComponent implements OnChanges {
 
-  weather: Weather = new Weather();
+  @Input() city: string;
+  @Input() country: string;
+
+  weather: Weather;
 
   constructor(private weatherService: WeatherService) { }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.getData();
   }
 
   getData() {
-    this.weatherService.getWeather()
+    if(!this.city && !this.country) {
+      return;
+    }
+
+    this.weatherService.getWeather(this.city, this.country)
       .subscribe(data => {
+        this.weather = new Weather();
         this.weather.city = data.name;
         this.weather.country = data.sys.country;
         this.weather.temp = data.main.temp;
@@ -28,13 +36,7 @@ export class WeatherComponent implements OnInit {
         let weather = data.weather[0];
         this.weather.icon = weather.icon;
         this.weather.description = weather.description;
-        
-        console.log(data);
-      })
-  }
-
-  calculateCelsius(temp: number) {
-    return Math.floor(temp - 273.15);
+      });
   }
 
 }

@@ -1,26 +1,32 @@
 <div class="container">
-  <form>
+  <form (ngSubmit)="onSend()" #weatherForm="ngForm">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-4">
         <input
           type="text"
           class="form-control"
           name="city"
           autocomplete="off"
           placeholder="City"
+          required
+            [(ngModel)]="_city"
+            #city="ngModel"
         />
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <input
           type="text"
           class="form-control"
           name="country"
           autocomplete="off"
           placeholder="Country"
+          required
+            [(ngModel)]="_country"
+            #country="ngModel"
         />
       </div>
-      <div class="col-md-3">
-        <button class="btn btn-warning mt-md-0 text-md-left">
+      <div class="col-md-4">
+        <button type="submit" class="btn btn-warning mt-md-0 text-md-left" [disabled]="!weatherForm.form.valid">
           Get Weather
         </button>
       </div>

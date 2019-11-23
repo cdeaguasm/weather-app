@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   
+  city: string;
+  country: string;
+
+  onSent(valuesForm: any) {
+    this.city = valuesForm.city;
+    this.country = valuesForm.country;
+  }
+
 }

@@ -10,12 +10,11 @@ import { environment } from 'src/environments/environment';
 })
 export class WeatherService {
 
-  weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=${environment.API_KEY}`;
-
   constructor(private http: HttpClient) { }
 
-  getWeather() : Observable<any> {
-    return this.http.get(this.weatherUrl)
+  getWeather(city: string, country: string) : Observable<any> {
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${environment.API_KEY}`;
+    return this.http.get(url)
     .pipe(
       catchError(this.handleError)
     );
