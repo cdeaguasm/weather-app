@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="cards pt-4 text-light">
+        <h1>{{ weather.city }}, {{ weather.country }}</h1>
+        <h5 class="py-4">
+            <i class="wi wi-day-sunny display-1"></i>
+            <img [src]="weather.icon" alt="" width="15%">
+        </h5>
+        <h1 class="py-2">{{ weather.temp }}&deg;</h1>
+
+        <h3>
+            <span class="px-4">{{ weather.tempMin }}&deg;</span>
+            <span class="px-4">{{ weather.tempMax }}&deg;</span>
+        </h3>
+
+        <h4 class="py-3">
+            {{ weather.description }}
+        </h4>
+    </div>
+</div>
